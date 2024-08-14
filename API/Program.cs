@@ -1,5 +1,9 @@
 using API.Data;
+using API.Middleware;
 using API.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +22,7 @@ builder.Services.AddCors();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -31,6 +36,32 @@ app.UseCors(opt =>
 });
 
 app.UseAuthorization();
+
+app.MapGet("/api/buggy/not-found", () =>
+{
+    return Results.NotFound();
+});
+app.MapGet("/api/buggy/bad-request", () =>
+{
+    return Results.BadRequest(new ProblemDetails { Title = "this is a bad request." });
+});
+app.MapGet("/api/buggy/unauthorized", () =>
+{
+    return Results.Unauthorized();
+});
+app.MapGet("/api/buggy/validation-error", () =>
+{
+    var errors = new Dictionary<string, string[]>
+    {
+        {"Problem1", new[]{ "This is the first error"}},
+        {"Problem2", new[]{ "This is the second error"}}
+    };
+    return Results.ValidationProblem(errors);
+});
+app.MapGet("/api/buggy/server-error", () =>
+{
+    throw new Exception("This is a server error");
+});
 
 app.MapControllers();
 
