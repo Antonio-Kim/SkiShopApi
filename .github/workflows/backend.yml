@@ -24,6 +24,9 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ./publish
 
+      - name: List contents of publish directory
+        run: ls -R ./publish
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -58,4 +61,4 @@ jobs:
         with:
           app-name: 'skishop'
           slot-name: 'Production'
-          package: ./publish
+          package: './publish'
