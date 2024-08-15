@@ -9,5 +9,5 @@ public class StoreContext : DbContext
     }
 
     public DbSet<Product> Products => Set<Product>();
-    public DbSet<Basket> Baskets => Set<Basket>();
+    public DbSet<Cart> Carts => Set<Cart>();
 }
