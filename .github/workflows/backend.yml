@@ -18,11 +18,25 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Restore NuGet packages
+        run: dotnet restore
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ./publish
+
+      - name: Install EF Core Tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Add Migrations
+        run: |
+          dotnet ef migrations add Initial --project ./API/API.csproj
+          sleep 20
+
+      - name: Apply Migrations
+        run: dotnet ef database update --project ./API/API.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -48,11 +62,6 @@ jobs:
           node-version: 20
       - name: Install Newman
         run: npm install -g newman
-      - name: Create Database via migration
-        run: |
-          dotnet ef migrations add Initial
-          sleep 20
-          dotnet ef database update Initial
       - name: Run Integration Test
         run: |
           dotnet ./API.dll & API_PID=$!
