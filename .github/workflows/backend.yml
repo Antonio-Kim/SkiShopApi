@@ -25,7 +25,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ./publish
+        run: dotnet publish -c Release
 
       - name: Install EF Core Tools
         run: dotnet tool install --global dotnet-ef
@@ -39,13 +39,13 @@ jobs:
         run: dotnet ef database update --project ./API/API.csproj
 
       - name: List contents of publish directory
-        run: ls -R ./publish
+        run: ls -R .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ./publish
+          path: .
 
   integration-test:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
         with:
           dotnet-version: '8.x'
       - name: List contents of publish directory
-        run: ls -R ./publish
+        run: ls -R .
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
