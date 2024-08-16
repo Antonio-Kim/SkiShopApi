@@ -48,6 +48,11 @@ jobs:
           node-version: 20
       - name: Install Newman
         run: npm install -g newman
+      - name: Create Database via migration
+        run: |
+          dotnet ef migrations add Initial
+          sleep 20
+          dotnet ef database update Initial
       - name: Run Integration Test
         run: |
           dotnet ./API.dll & API_PID=$!
