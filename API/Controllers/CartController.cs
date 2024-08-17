@@ -14,50 +14,33 @@ public class CartController : BaseApiController
         _context = context;
     }
 
-    [HttpGet]
+    [HttpGet(Name = "GetBasket")]
     public async Task<ActionResult<CartDTO>> GetCart()
     {
         var cart = await RetrieveCart();
 
         if (cart == null) return NotFound();
-
-        return new CartDTO
-        {
-            Id = cart.Id,
-            BuyerId = cart.BuyerId,
-            Items = cart.Items.Select(item => new CartItemDTO
-            {
-                ProductId = item.ProductId,
-                Name = item.Product.Name,
-                Price = item.Product.Price,
-                PictureUrl = item.Product.PictureUrl,
-                Type = item.Product.Type,
-                Brand = item.Product.Brand,
-                Quantity = item.Quantity,
-            }).ToList()
-        };
+        return CartToDTO(cart);
     }
 
-
     [HttpPost]
-    public async Task<ActionResult> AddItemToCart(int productId, int quantity)
+    public async Task<ActionResult<CartDTO>> AddItemToCart(int productId, int quantity)
     {
         var cart = await RetrieveCart();
         if (cart == null) cart = CreateCart();
         var product = await _context.Products.FindAsync(productId);
         if (product == null) return NotFound();
+        cart.AddItem(product, quantity);
 
         var result = await _context.SaveChangesAsync() > 0;
-        if (result) return StatusCode(201);
+
+        if (result) return CreatedAtRoute("GetBasket", CartToDTO(cart));
         return BadRequest(new ProblemDetails { Title = "Problem saving item to cart" });
     }
 
     [HttpDelete]
     public async Task<ActionResult> RemoveCartItem(int productId, int quantity)
     {
-        // get cart
-        // remove item or reduce quantity
-        // save changes
         var cart = await RetrieveCart();
         if (cart == null) return NotFound();
         cart.RemoveItem(productId, quantity);
@@ -83,5 +66,24 @@ public class CartController : BaseApiController
         _context.Carts.Add(cart);
 
         return cart;
+    }
+
+    private CartDTO CartToDTO(Cart cart)
+    {
+        return new CartDTO
+        {
+            Id = cart.Id,
+            BuyerId = cart.BuyerId,
+            Items = cart.Items.Select(item => new CartItemDTO
+            {
+                ProductId = item.ProductId,
+                Name = item.Product.Name,
+                Price = item.Product.Price,
+                PictureUrl = item.Product.PictureUrl,
+                Type = item.Product.Type,
+                Brand = item.Product.Brand,
+                Quantity = item.Quantity,
+            }).ToList()
+        };
     }
 }
