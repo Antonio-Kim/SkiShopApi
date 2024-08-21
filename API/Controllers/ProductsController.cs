@@ -1,5 +1,7 @@
+using System.Text.Json;
 using API.Extensions;
 using API.Models;
+using API.RequestHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,15 +17,18 @@ public class ProductsController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetProducts(string orderBy, string searchTerm, string brands, string types)
+    public async Task<ActionResult<PagedList<Product>>> GetProducts(ProductParams productParams)
     {
         var query = _context.Products
-            .Sort(orderBy)
-            .Search(searchTerm)
-            .Filter(brands, types)
+            .Sort(productParams.OrderBy)
+            .Search(productParams.SearchTerm)
+            .Filter(productParams.Brands, productParams.Types)
             .AsQueryable();
 
-        return await query.ToListAsync();
+        var products = await PagedList<Product>.ToPageList(query, productParams.PageNumber, productParams.PageSize);
+        Response.Headers.Append("Pagination", JsonSerializer.Serialize(products.MetaData));
+
+        return products;
     }
 
     [HttpGet("{id}")]
