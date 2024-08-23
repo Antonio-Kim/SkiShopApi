@@ -1,12 +1,13 @@
+using System.Text;
 using API.Data;
 using API.Middleware;
 using API.Models;
 using API.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,18 @@ builder.Services.AddIdentityCore<User>(option =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<StoreContext>();
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
+        };
+    });
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
 
@@ -73,6 +85,9 @@ app.MapGet("/api/buggy/server-error", () =>
 {
     throw new Exception("This is a server error");
 });
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
