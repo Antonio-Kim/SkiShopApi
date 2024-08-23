@@ -1,6 +1,7 @@
 using API.Data;
 using API.Middleware;
 using API.Models;
+using API.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ builder.Services.AddIdentityCore<User>(option =>
     .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
+builder.Services.AddScoped<TokenService>();
 
 var app = builder.Build();
 
