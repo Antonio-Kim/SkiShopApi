@@ -234,6 +234,6 @@ public static class DbInitializer
 			context.Products.Add(product);
 		}
 
-		context.SaveChangesAsync();
+		await context.SaveChangesAsync();
 	}
 }
