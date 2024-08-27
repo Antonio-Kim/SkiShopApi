@@ -55,11 +55,12 @@ public class CartController : BaseApiController
         if (string.IsNullOrEmpty(buyerId))
         {
             Response.Cookies.Delete("buyerId");
+            return null;
         }
         return await _context.Carts
             .Include(i => i.Items)
             .ThenInclude(p => p.Product)
-            .FirstOrDefaultAsync(x => x.BuyerId == Request.Cookies["buyerId"]);
+            .FirstOrDefaultAsync(cart => cart.BuyerId == buyerId);
     }
 
     private string GetBuyerId()
@@ -73,7 +74,7 @@ public class CartController : BaseApiController
         if (string.IsNullOrEmpty(buyerId))
         {
             buyerId = Guid.NewGuid().ToString();
-            var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
+            var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddHours(8) };
             Response.Cookies.Append("buyerId", buyerId, cookieOptions);
         }
 
