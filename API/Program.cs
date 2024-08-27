@@ -87,6 +87,7 @@ app.UseCors(opt =>
     opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGet("/api/buggy/not-found", () =>
@@ -115,9 +116,6 @@ app.MapGet("/api/buggy/server-error", () =>
     throw new Exception("This is a server error");
 });
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllers();
 
 var scope = app.Services.CreateScope();
@@ -129,7 +127,7 @@ try
     context.Database.Migrate();
     await DbInitializer.Initialize(context, userManager);
 }
-catch (System.Exception ex)
+catch (Exception ex)
 {
     logger.LogError(ex, "A problem occurred during migrations");
 }
