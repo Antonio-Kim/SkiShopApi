@@ -5,6 +5,8 @@ public class Cart
 	public int Id { get; set; }
 	public string BuyerId { get; set; }
 	public List<CartItem> Items { get; set; } = new List<CartItem>();
+	public string PaymentIntentId { get; set; }
+	public string ClientSecret { get; set; }
 
 	public void AddItem(Product product, int quantity)
 	{
