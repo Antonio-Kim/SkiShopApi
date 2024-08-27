@@ -12,6 +12,8 @@ public static class CartExtensions
         {
             Id = cart.Id,
             BuyerId = cart.BuyerId,
+            PaymentIntentId = cart.PaymentIntentId,
+            ClientSecret = cart.ClientSecret,
             Items = cart.Items.Select(item => new CartItemDTO
             {
                 ProductId = item.ProductId,
