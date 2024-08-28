@@ -73,6 +73,7 @@ public class OrdersController : BaseApiController
             ShippingAddress = orderDTO.ShippingAddress,
             Subtotal = subtotal,
             DeliveryFee = deliveryFee,
+            PaymentIntentId = cart.PaymentIntentId
         };
 
         _context.Orders.Add(order);
