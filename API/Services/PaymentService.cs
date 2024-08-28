@@ -1,4 +1,3 @@
-using API.Migrations;
 using API.Models;
 using Stripe;
 using PaymentIntent = Stripe.PaymentIntent;
