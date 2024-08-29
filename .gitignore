@@ -9,10 +9,7 @@
 
 # vscode
 .vscode
-
-# Migrations
-**/Migrations
-store.db
+./API/Migrations
 
 # User-specific files
 *.rsuser

@@ -16,3 +16,36 @@ app.UseCors(opt =>
 		.WithOrigins("http://localhost:3000");
 });
 ```
+
+Here are the steps for dockerizing the App.
+
+1. Create production client and store into wwwroot
+2. Inside the program.cs file, you will need to add the following. Note the order matters so see the program.cs file for this:
+
+```csharp
+// convert to PostgreSQL in service
+builder.Services.AddDbContext<StoreContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+// Configuring middleware
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+// the middleware re-routes to Index controller endpoint as fallback. See the controller for more info
+app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
+```
+
+Ensure that appsetting.json has both jwt and PostgreSql routed properly to docker image. Note that instead of localhost, you will need to route to docker's path:
+
+```json
+"DefaultConnection": "Server=host.docker.internal
+```
+
+Create the dockerfile as shown inside here and type the following:
+
+```bash
+docker build -t <username/app_name> .
+docker run --rm -it -p 8080:8080 <username/app_name>
+```
