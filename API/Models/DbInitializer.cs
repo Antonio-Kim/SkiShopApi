@@ -33,198 +33,209 @@ public static class DbInitializer
 		{
 			new Product
 			{
-				Name = "Angular Speedster Board 2000",
+				Name = "Ski Set - Black",
 				Description =
 					"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 20000,
-				PictureUrl = "/images/products/sb-ang1.png",
-				Brand = "Angular",
-				Type = "Boards",
+				PictureUrl = "/images/products/ski-black.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Green Angular Board 3000",
+				Name = "Ski Set - Blue",
 				Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
 				Price = 15000,
-				PictureUrl = "/images/products/sb-ang2.png",
-				Brand = "Angular",
-				Type = "Boards",
+				PictureUrl = "/images/products/ski-blue.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Core Board Speed Rush 3",
+				Name = "Ski Set - Grey",
 				Description =
 					"Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
 				Price = 18000,
-				PictureUrl = "/images/products/sb-core1.png",
-				Brand = "NetCore",
-				Type = "Boards",
+				PictureUrl = "/images/products/ski-grey.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Net Core Super Board",
+				Name = "Ski Set - Orange",
 				Description =
 					"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
 				Price = 30000,
-				PictureUrl = "/images/products/sb-core2.png",
-				Brand = "NetCore",
-				Type = "Boards",
+				PictureUrl = "/images/products/ski-orange.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "React Board Super Whizzy Fast",
+				Name = "Ski Set - Red",
 				Description =
 					"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 25000,
-				PictureUrl = "/images/products/sb-react1.png",
-				Brand = "React",
-				Type = "Boards",
+				PictureUrl = "/images/products/ski-red.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Typescript Entry Board",
+				Name = "Ski Set - Yellow",
 				Description =
 					"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-				Price = 12000,
-				PictureUrl = "/images/products/sb-ts1.png",
-				Brand = "TypeScript",
-				Type = "Boards",
+				Price = 22000,
+				PictureUrl = "/images/products/ski-yellow.png",
+				Brand = "Speedster",
+				Type = "Ski",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Core Blue Hat",
+				Name = "Beanies - Blue",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 1000,
-				PictureUrl = "/images/products/hat-core1.png",
-				Brand = "NetCore",
-				Type = "Hats",
+				PictureUrl = "/images/products/beanies-blue.png",
+				Brand = "Nique",
+				Type = "Beanies",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Green React Woolen Hat",
-				Description =
-					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-				Price = 8000,
-				PictureUrl = "/images/products/hat-react1.png",
-				Brand = "React",
-				Type = "Hats",
-				QuantityInStock = 100
-			},
-			new Product
-			{
-				Name = "Purple React Woolen Hat",
+				Name = "Beanies - Green",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 1500,
-				PictureUrl = "/images/products/hat-react2.png",
-				Brand = "React",
-				Type = "Hats",
+				PictureUrl = "/images/products/beanies-green.png",
+				Brand = "Nique",
+				Type = "Beanies",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Blue Code Gloves",
+				Name = "Beanies - Pink",
+				Description =
+					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+				Price = 1500,
+				PictureUrl = "/images/products/beanies-pink.png",
+				Brand = "Nique",
+				Type = "Beanies",
+				QuantityInStock = 100
+			},
+			new Product
+			{
+				Name = "Beanies - Purple",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 1800,
-				PictureUrl = "/images/products/glove-code1.png",
-				Brand = "VS Code",
-				Type = "Gloves",
+				PictureUrl = "/images/products/beanies-purple.png",
+				Brand = "Nique",
+				Type = "Beanies",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Green Code Gloves",
+				Name = "Beanies - Red",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 1500,
-				PictureUrl = "/images/products/glove-code2.png",
-				Brand = "VS Code",
-				Type = "Gloves",
+				PictureUrl = "/images/products/beanies-red.png",
+				Brand = "Nique",
+				Type = "Beanies",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Purple React Gloves",
+				Name = "Ski Boots - Navy",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-				Price = 1600,
-				PictureUrl = "/images/products/glove-react1.png",
-				Brand = "React",
-				Type = "Gloves",
+				Price = 16000,
+				PictureUrl = "/images/products/boots-navy.png",
+				Brand = "Adibas",
+				Type = "Boots",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Green React Gloves",
+				Name = "Ski Boots - Pink",
 				Description =
 					"Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-				Price = 1400,
-				PictureUrl = "/images/products/glove-react2.png",
-				Brand = "React",
-				Type = "Gloves",
+				Price = 14000,
+				PictureUrl = "/images/products/boots-pink.png",
+				Brand = "Adibas",
+				Type = "Boots",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Redis Red Boots",
+				Name = "Ski Boots - Red",
 				Description =
 					"Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
 				Price = 25000,
-				PictureUrl = "/images/products/boot-redis1.png",
-				Brand = "Redis",
+				PictureUrl = "/images/products/boots-red.png",
+				Brand = "Adibas",
 				Type = "Boots",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Core Red Boots",
+				Name = "Ski Boots - Yellow",
 				Description =
 					"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
 				Price = 18999,
-				PictureUrl = "/images/products/boot-core2.png",
-				Brand = "NetCore",
+				PictureUrl = "/images/products/boots-yellow.png",
+				Brand = "Adibas",
 				Type = "Boots",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Core Purple Boots",
+				Name = "Ski Gloves - Blue",
 				Description =
 					"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-				Price = 19999,
-				PictureUrl = "/images/products/boot-core1.png",
-				Brand = "NetCore",
-				Type = "Boots",
+				Price = 1999,
+				PictureUrl = "/images/products/gloves-blue.png",
+				Brand = "OverArmour",
+				Type = "Gloves",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Angular Purple Boots",
+				Name = "Ski Gloves - Green",
 				Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-				Price = 15000,
-				PictureUrl = "/images/products/boot-ang2.png",
-				Brand = "Angular",
-				Type = "Boots",
+				Price = 1500,
+				PictureUrl = "/images/products/gloves-green.png",
+				Brand = "OverArmour",
+				Type = "Gloves",
 				QuantityInStock = 100
 			},
 			new Product
 			{
-				Name = "Angular Blue Boots",
+				Name = "Ski Gloves - Red",
 				Description =
 					"Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-				Price = 18000,
-				PictureUrl = "/images/products/boot-ang1.png",
-				Brand = "Angular",
-				Type = "Boots",
+				Price = 1800,
+				PictureUrl = "/images/products/gloves-red.png",
+				Brand = "OverArmour",
+				Type = "Gloves",
+				QuantityInStock = 100
+			},
+			new Product
+			{
+				Name = "Ski Gloves - Teal",
+				Description =
+					"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+				Price = 1999,
+				PictureUrl = "/images/products/gloves-blue.png",
+				Brand = "OverArmour",
+				Type = "Gloves",
 				QuantityInStock = 100
 			},
 		};

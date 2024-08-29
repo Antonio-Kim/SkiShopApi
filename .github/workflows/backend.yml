@@ -1,9 +1,12 @@
 name: Backend
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
 jobs:
@@ -78,32 +81,21 @@ jobs:
           kill $API_PID
           wait $API_PID 2>/dev/null || true
 
-  deploy:
+  deploy-docker:
     runs-on: ubuntu-latest
-    needs: integration-test
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write
-
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          name: .net-app
-
-      - name: Login to Azure
-        uses: azure/login@v2
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_002CA322DBA3406CA98836F6B9EF20DE }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7B73F785E84946A5BA77BED7CBAE7F50 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_283B1854E2B14767A38D7BF7DA640A28 }}
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'skishop'
-          slot-name: 'Production'
-          package: .
+          context: '{{defaultContext}}:API'
+          push: true
+          tags: antoni0kim/skishop:latest

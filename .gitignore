@@ -10,10 +10,6 @@
 # vscode
 .vscode
 
-# Migrations
-**/Migrations
-store.db
-
 # User-specific files
 *.rsuser
 *.suo
